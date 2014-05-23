@@ -6,7 +6,7 @@
     <string name="create_question">Create Question</string>
 	<string name="view_question">View Question</string>
 	<string name="get_single_record_by_id">Get single record by id</string>
-	<string name="get_single_record_by_string">Get single record by string</string>
+	<string name="get_record_by_string">Get records by string</string>
 	<string name="enter_id_hint">Enter the id of the question</string>
 	<string name="ok">OK</string>
 	<string name="cancel">Cancel</string>

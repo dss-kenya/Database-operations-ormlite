@@ -45,7 +45,7 @@
             android:layout_below="@+id/btnGetSingleRecordById"
             android:layout_marginBottom="10dp"
             android:onClick="buttonClicked"
-            android:text="@string/get_single_record_by_string" />
+            android:text="@string/get_record_by_string" />
         
         <Button
             android:id="@+id/btnDelete"

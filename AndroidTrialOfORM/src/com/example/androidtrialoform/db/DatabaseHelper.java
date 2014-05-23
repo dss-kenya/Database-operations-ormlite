@@ -143,7 +143,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 				questionTableDAO = getDao(QuestionTable.class);
 			}
 			QueryBuilder<QuestionTable, Integer> queryBuilder = questionTableDAO.queryBuilder();
-			
+			search = search.replace("'", "''");
 			queryBuilder.where().like(QuestionTable.COLUMN_NAME_QUESTION, "%"+ search + "%");
 			list = queryBuilder.query();
 		}catch(SQLException s) {
