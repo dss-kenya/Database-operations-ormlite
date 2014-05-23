@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.androidtrialoform.db.DatabaseHelper;
 import com.example.androidtrialoform.db.QuestionTable;
 import com.example.androidtrialoform.utilities.ShowDialog;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 public class MainActivity extends Activity {
 	private static DatabaseHelper databaseHelper = null;
@@ -26,27 +25,27 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		databaseHelper = MyApplication.getInstance().getHelper();
+		databaseHelper = MyApplication.getHelper();
 		txtQuestion = (TextView)findViewById(R.id.txtViewQuestion);
 	}
 
 	@Override
 	protected void onDestroy() {
 	    super.onDestroy();
-	    if (databaseHelper != null) {
-	        OpenHelperManager.releaseHelper();
-	        databaseHelper = null;
-	    }
+	    // commented these lines as it gives database 
+	    // not open when moving to the add activity
+	    
+	    // if (databaseHelper != null) {
+	    //    MyApplication.getInstance().releaseHelper();
+	    //    databaseHelper = null;
+	    // }
 	}
 	
 	public void buttonClicked(View v) {
 		switch (v.getId()) {
 		case R.id.btnCreateQuestion:
-			/*QuestionTable questionTable = new QuestionTable();
-			questionTable.setQuestionText("name");
-			questionTable.setQuestionType(2);
-			databaseHelper.createQuestion(questionTable);*/
 			startActivity(new Intent(MainActivity.this, AddActivity.class));
+			finish();
 			break;
 			
 		case R.id.btnViewQuestion:

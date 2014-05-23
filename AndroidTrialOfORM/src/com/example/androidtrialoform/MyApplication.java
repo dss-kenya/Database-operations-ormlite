@@ -1,6 +1,7 @@
 package com.example.androidtrialoform;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.example.androidtrialoform.db.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -15,7 +16,7 @@ public class MyApplication extends Application {
 		mApplication = this;
 	}
 	
-	public DatabaseHelper getHelper() {
+	public static synchronized DatabaseHelper getHelper() {
 	    if (databaseHelper == null) {
 	        databaseHelper =
 	            OpenHelperManager.getHelper(mApplication, DatabaseHelper.class);
@@ -26,4 +27,19 @@ public class MyApplication extends Application {
 	public static MyApplication getInstance() {
 		return mApplication;
 	}
+	
+	@Override
+	public void onTerminate() {
+		super.onTerminate();
+		Log.e("dhara","onTerminate called!!");
+	}
+	
+	public void releaseHelper() {
+		if (databaseHelper != null) {
+	        OpenHelperManager.releaseHelper();
+	        databaseHelper = null;
+	    }
+	}
+	
+	
 }

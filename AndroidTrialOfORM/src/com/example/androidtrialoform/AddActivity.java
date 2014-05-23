@@ -22,7 +22,7 @@ public class AddActivity extends Activity{
 		setContentView(R.layout.activity_add_question);
 		mEditQuestionText = (EditText)findViewById(R.id.editQuestion);
 		mEditQuestionType = (EditText)findViewById(R.id.editQuestionType);
-		mDatabaseHelper = MyApplication.getInstance().getHelper();
+		mDatabaseHelper = MyApplication.getHelper();
 	}
 	
 	public void buttonClicked(View v) {
@@ -41,7 +41,6 @@ public class AddActivity extends Activity{
 				questionTable.setQuestionText(mEditQuestionText.getText().toString());
 				questionTable.setQuestionType(Integer.parseInt(mEditQuestionType.getText().toString()));
 				mDatabaseHelper.createQuestion(questionTable);
-				//mDatabaseHelper.close();
 				
 				startActivity(new Intent(AddActivity.this, MainActivity.class));
 				finish();
@@ -56,10 +55,5 @@ public class AddActivity extends Activity{
 		default:
 			break;
 		}
-	}
-	
-	@Override
-	protected void onDestroy() {
-	    super.onDestroy();
 	}
 }
